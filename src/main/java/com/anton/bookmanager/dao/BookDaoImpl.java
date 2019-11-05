@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
-import java.awt.peer.ListPeer;
 import java.util.List;
 
 @Repository
@@ -24,18 +23,18 @@ public class BookDaoImpl implements BookDao{
     public void addBook(Book book) {
         Session session = this.sessionFactory.getCurrentSession();
         session.persist(book);
-        logger.info("Book successfullu saved. Book details: " + book);
+        logger.info("Book successfully saved. Book details: " + book);
     }
 
     public void updateBook(Book book) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = this.sessionFactory.getCurrentSession();
         session.update(book);
         logger.info("Book successfully updated. Book details: " + book);
     }
 
     public void removeBook(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        Book book = (Book) session.load(Book.class, new Long(id));
+        Session session = this.sessionFactory.getCurrentSession();
+        Book book = (Book) session.load(Book.class, new Integer(id));
 
         if(book != null) {
             session.delete(book);
@@ -45,7 +44,7 @@ public class BookDaoImpl implements BookDao{
 
     public Book getBookById(int id) {
         Session session = this.sessionFactory.getCurrentSession();
-        Book book = (Book) session.load(Book.class, new Long(id));
+        Book book = (Book) session.load(Book.class, new Integer(id));
         logger.info("Book successfully loaded. Book details: " + book);
         return book;
     }

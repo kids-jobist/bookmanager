@@ -15,6 +15,7 @@ public class BookServiceImpl implements BookService {
     public void setBookDao(BookDao bookDao) {
         this.bookDao = bookDao;
     }
+
     @Transactional
     public void addBook(Book book) {
         this.bookDao.addBook(book);
